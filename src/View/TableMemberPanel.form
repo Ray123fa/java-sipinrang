@@ -66,7 +66,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btnDelete" min="-2" pref="94" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btnDelete1" min="-2" pref="94" max="-2" attributes="0"/>
+                              <Component id="btnEkspor" min="-2" pref="94" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -84,7 +84,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnEdit" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                           <Component id="btnDelete" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                          <Component id="btnDelete1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                          <Component id="btnEkspor" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" pref="463" max="32767" attributes="0"/>
@@ -140,8 +140,11 @@
                   <Border info="null"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="btnDelete1">
+            <Component class="javax.swing.JButton" name="btnEkspor">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="7b" red="0" type="rgb"/>

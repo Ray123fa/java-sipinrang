@@ -18,7 +18,7 @@ import jiconfont.icons.font_awesome.FontAwesome;
 import Controller.UserController;
 import Model.Database;
 import Model.UserModel;
-import javax.swing.JPanel;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -256,6 +256,8 @@ public class MainFrame extends javax.swing.JFrame {
         Icon userIcon = IconFontSwing.buildIcon(FontAwesome.USER, 20);
         Icon userPlusIcon = IconFontSwing.buildIcon(FontAwesome.USER_PLUS, 20);
         Icon userCircleIcon = IconFontSwing.buildIcon(FontAwesome.USER_CIRCLE, 20);
+        ImageIcon userPencilIcon = new ImageIcon(getClass().getResource("../images/user-with-pencil.png"));
+        Icon lockIcon = IconFontSwing.buildIcon(FontAwesome.LOCK, 20);
         Icon logoutIcon = IconFontSwing.buildIcon(FontAwesome.SIGN_OUT, 20);
 
         MenuItem homeItem = new MenuItem(homeIcon, false, null, "Beranda", new ActionListener() {
@@ -267,11 +269,12 @@ public class MainFrame extends javax.swing.JFrame {
                 mainContent.revalidate();
             }
         });
+
         MenuItem addUserItem = new MenuItem(userPlusIcon, false, null, "Tambah Anggota", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainContent.removeAll();
-                mainContent.add(new AddMemberPanel());
+                mainContent.add(new AddMemberPanel(userModel));
                 mainContent.repaint();
                 mainContent.revalidate();
             }
@@ -285,8 +288,30 @@ public class MainFrame extends javax.swing.JFrame {
         MenuItem umum = new MenuItem(null, true, userIcon, "Umum", setActionSubMenuUsers("umum"));
         MenuItem keseluruhan = new MenuItem(null, true, userIcon, "Keseluruhan", setActionSubMenuUsers("keseluruhan"));
         MenuItem[] usersSubMenu = new MenuItem[]{bph, pengembangan, pelatihan, hpd, umum, keseluruhan};
-
         MenuItem usersItem = new MenuItem(usersIcon, false, null, "Anggota", null, usersSubMenu);
+
+        // Profile Sub Menu
+        MenuItem editProfileItem = new MenuItem(null, true, userPencilIcon, "Edit Profile", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainContent.removeAll();
+                mainContent.add(new EditProfilePanel(userModel));
+                mainContent.repaint();
+                mainContent.revalidate();
+            }
+        });
+        MenuItem changePasswordItem = new MenuItem(null, true, lockIcon, "Change Password", new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                mainContent.removeAll();
+                mainContent.add(new ChangePasswordPanel(userModel));
+                mainContent.repaint();
+                mainContent.revalidate();
+            }
+        });
+        MenuItem[] profileSubMenu = new MenuItem[]{editProfileItem, changePasswordItem};
+        MenuItem userProfileItem = new MenuItem(userCircleIcon, false, null, "Profile", null, profileSubMenu);
+
         MenuItem logoutItem = new MenuItem(logoutIcon, false, null, "Logout", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -296,8 +321,12 @@ public class MainFrame extends javax.swing.JFrame {
             }
         });
 
-        MenuItem[] menus = new MenuItem[]{homeItem, addUserItem, usersItem, logoutItem};
+        MenuItem[] menus = new MenuItem[]{homeItem, addUserItem, usersItem, userProfileItem, logoutItem};
         addMenu(menus);
+
+        if (userModel.getRole().equals("member")) {
+            removeMenu(addUserItem);
+        }
 
         // Set
         setUserLabel();
@@ -311,6 +340,13 @@ public class MainFrame extends javax.swing.JFrame {
             for (MenuItem sm : subMenu) {
                 sidebarContentPanel.add(sm);
             }
+        }
+        sidebarContentPanel.revalidate();
+    }
+
+    private void removeMenu(MenuItem... menu) {
+        for (MenuItem m : menu) {
+            sidebarContentPanel.remove(m);
         }
         sidebarContentPanel.revalidate();
     }

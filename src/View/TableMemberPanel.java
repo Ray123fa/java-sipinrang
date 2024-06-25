@@ -5,6 +5,7 @@
 package View;
 
 import Model.UserModel;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -48,7 +49,7 @@ public class TableMemberPanel extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        btnDelete1 = new javax.swing.JButton();
+        btnEkspor = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         membersTable = new javax.swing.JTable();
 
@@ -79,12 +80,17 @@ public class TableMemberPanel extends javax.swing.JPanel {
         btnDelete.setForeground(new java.awt.Color(255, 255, 255));
         btnDelete.setText("HAPUS");
         btnDelete.setBorder(null);
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
-        btnDelete1.setBackground(new java.awt.Color(0, 123, 255));
-        btnDelete1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnDelete1.setForeground(new java.awt.Color(255, 255, 255));
-        btnDelete1.setText("EKSPOR");
-        btnDelete1.setBorder(null);
+        btnEkspor.setBackground(new java.awt.Color(0, 123, 255));
+        btnEkspor.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnEkspor.setForeground(new java.awt.Color(255, 255, 255));
+        btnEkspor.setText("EKSPOR");
+        btnEkspor.setBorder(null);
 
         membersTable.setBackground(new java.awt.Color(245, 245, 220));
         membersTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -132,7 +138,7 @@ public class TableMemberPanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnEkspor, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         dataMembersPanelLayout.setVerticalGroup(
@@ -146,7 +152,7 @@ public class TableMemberPanel extends javax.swing.JPanel {
                 .addGroup(dataMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEdit, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnEkspor, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 463, Short.MAX_VALUE)
                 .addGap(13, 13, 13))
@@ -161,10 +167,14 @@ public class TableMemberPanel extends javax.swing.JPanel {
         editSelectedRow();
     }//GEN-LAST:event_btnEditActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnDelete1;
     private javax.swing.JButton btnEdit;
+    private javax.swing.JButton btnEkspor;
     private javax.swing.JPanel dataMembersPanel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -208,10 +218,16 @@ public class TableMemberPanel extends javax.swing.JPanel {
             UserModel selectedUser = user.getUser(nim);
 
             mainPanel.removeAll();
-            mainPanel.add(new EditMemberPanel(selectedUser));
+            mainPanel.add(new EditMemberPanel(selectedUser, user));
             mainPanel.repaint();
             mainPanel.revalidate();
+        } else {
+            JOptionPane.showMessageDialog(null, "Anda belum memilih baris.\nPilih satu baris untuk mengedit!");
         }
+    }
+    
+    private void deleteSelectedRows() {
+        
     }
 
     private void execute() {
@@ -219,6 +235,9 @@ public class TableMemberPanel extends javax.swing.JPanel {
 
         if ((role.equals("koor") && !divisi.equals(activePanel)) || role.equals("member")) {
             this.hideButtonCrud();
+        }
+        if (!activePanel.equals("keseluruhan")) {
+            btnEkspor.setVisible(false);
         }
 
         this.setTitlePanel();

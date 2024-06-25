@@ -22,7 +22,7 @@ public class UserController {
     public UserController() {
         this.userModel = new UserModel();
     }
-    
+
     // Create
     public void addUser(String nim, String fullname, LocalDate birthday, int angkatan, String divisi, String status, String role) {
         userModel.addMember(nim, fullname, birthday, angkatan, divisi, status, role);
@@ -32,6 +32,15 @@ public class UserController {
     public void updateUser(String nim, String fullname, LocalDate birthday, int angkatan,
             String divisi, String status, String role) {
         userModel.updateMember(nim, fullname, birthday, angkatan, divisi, status, role);
+    }
+
+    public void updateUser(String nim, String username, String fullname, LocalDate birthday, int angkatan,
+            String divisi, String status, String role) {
+        userModel.updateMember(nim, username, fullname, birthday, angkatan, divisi, status, role);
+    }
+
+    public void changePassword(String nim, String oldPass, String newPass) {
+        userModel.changePassword(nim, oldPass, newPass);
     }
 
     // Delete

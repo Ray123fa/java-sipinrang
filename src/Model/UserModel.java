@@ -74,19 +74,20 @@ public class UserModel {
             pstmt.setString(9, role);
 
             if (isExist(nim)) {
-                JOptionPane.showMessageDialog(new AddMemberPanel(), "Anggota sudah ada!");
+                JOptionPane.showMessageDialog(null, "Anggota sudah ada!");
                 return false;
             }
 
             if (pstmt.executeUpdate() == 1) {
-                JOptionPane.showMessageDialog(new AddMemberPanel(), "Anggota berhasil ditambahkan!");
+                JOptionPane.showMessageDialog(null,
+                        "Anggota berhasil ditambahkan!");
                 return true;
             } else {
-                JOptionPane.showMessageDialog(new AddMemberPanel(), "Anggota gagal ditambahkan!");
+                JOptionPane.showMessageDialog(null, "Anggota gagal ditambahkan!");
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(new AddMemberPanel(), "Anggota gagal ditambahkan!");
+            JOptionPane.showMessageDialog(null, "Anggota gagal ditambahkan!");
             return false;
         }
     }
@@ -107,14 +108,81 @@ public class UserModel {
             pstmt.setString(7, nim);
 
             if (pstmt.executeUpdate() == 1) {
-                JOptionPane.showMessageDialog(new AddMemberPanel(), "Anggota berhasil diubah!");
+                JOptionPane.showMessageDialog(null, "Anggota berhasil diubah!");
                 return true;
             } else {
-                JOptionPane.showMessageDialog(new AddMemberPanel(), "Anggota gagal diubah!");
+                JOptionPane.showMessageDialog(null, "Anggota gagal diubah!");
                 return false;
             }
         } catch (SQLException e) {
-            JOptionPane.showMessageDialog(new AddMemberPanel(), "Anggota gagal diubah!");
+            JOptionPane.showMessageDialog(null, "Anggota gagal diubah!");
+            return false;
+        }
+    }
+
+    public boolean updateMember(String nim, String username, String fullname, LocalDate birthday,
+            int angkatan, String divisi, String status, String role) {
+        Database db = Database.getInstance();
+        String query
+                = "UPDATE users SET username = ?, fullname = ?, birthday = ?, angkatan = ?, divisi = ?, status = ?, role = ? WHERE nim = ?";
+
+        try (Connection conn = db.getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, username);
+            pstmt.setString(2, fullname);
+            pstmt.setString(3, birthday.toString());
+            pstmt.setInt(4, angkatan);
+            pstmt.setString(5, divisi);
+            pstmt.setString(6, status);
+            pstmt.setString(7, role);
+            pstmt.setString(8, nim);
+
+            if (pstmt.executeUpdate() == 1) {
+                JOptionPane.showMessageDialog(null, "Profile berhasil diubah!");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Profile gagal diubah!");
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Profile gagal diubah!");
+            return false;
+        }
+    }
+
+    public boolean changePassword(String nim, String oldPass, String newPass) {
+        Database db = Database.getInstance();
+        String query = "SELECT password FROM users WHERE nim = ?";
+
+        try (Connection conn = db.getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, nim);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            boolean isValid = checkPassword(oldPass, rs.getString("password"));
+            if (isValid) {
+                query = "UPDATE users SET password = ? WHERE nim = ?";
+                try (PreparedStatement pstmt2 = conn.prepareStatement(query)) {
+                    pstmt2.setString(1, hashPassword(newPass));
+                    pstmt2.setString(2, nim);
+
+                    if (pstmt2.executeUpdate() == 1) {
+                        JOptionPane.showMessageDialog(null, "Password berhasil diubah!");
+                        return true;
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Password gagal diubah!");
+                        return false;
+                    }
+                } catch (SQLException e) {
+                    JOptionPane.showMessageDialog(null, "Password gagal diubah!");
+                    return false;
+                }
+            }
+            return false;
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Password lama salah!");
+            return false;
+        } catch (IllegalArgumentException e) {
+            JOptionPane.showMessageDialog(null, "Password lama salah!");
             return false;
         }
     }
