@@ -6,7 +6,6 @@ package Controller;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.List;
 import Model.UserModel;
 
@@ -32,7 +31,7 @@ public class CsvController {
                 writer.append(user.getBirthday().toString()).append(",");
                 writer.append(String.valueOf(user.getAngkatan())).append(",");
                 writer.append(user.getDivisi()).append(",");
-                writer.append(user.getStatus()).append(",");
+                writer.append(user.getStatus()).append(",\n");
             }
             writer.flush();
             writer.close();
