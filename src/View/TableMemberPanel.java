@@ -4,8 +4,10 @@
  */
 package View;
 
+import Controller.UserController;
 import Model.UserModel;
 import java.awt.Font;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -180,7 +182,13 @@ public class TableMemberPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnEksporActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEksporActionPerformed
-        
+        JFileChooser fileChooser = new JFileChooser();
+        int option = fileChooser.showSaveDialog(mainPanel);
+        if (option == JFileChooser.APPROVE_OPTION) {
+            String path = fileChooser.getSelectedFile().getAbsolutePath() + ".csv";
+            new UserController().exportToCsv(path);
+            JOptionPane.showMessageDialog(null, "Data berhasil diekspor!");
+        }
     }//GEN-LAST:event_btnEksporActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

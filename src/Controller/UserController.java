@@ -47,6 +47,11 @@ public class UserController {
         return userModel.getUser(nim);
     }
 
+    public void exportToCsv(String path) {
+        CsvController csvController = new CsvController();
+        csvController.exportToCsv(userModel.getUsers("keseluruhan"), path);
+    }
+
     public void login(String usernameOrNim, String password) {
         boolean isExist = userModel.auth(usernameOrNim, password);
         if (isExist) {

@@ -342,19 +342,6 @@ public class UserModel {
         return 0;
     }
 
-    public void exportToCsv(String path) {
-        Database db = Database.getInstance();
-        String query = "SELECT * FROM users ORDER BY divisi, fullname ASC";
-
-        try (Connection conn = db.getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
-            ResultSet rs = pstmt.executeQuery();
-
-            CsvModel csv = new CsvModel();
-            csv.writeToCsv(rs, path);
-        } catch (SQLException e) {
-        }
-    }
-
     /**
      * @return the id
      */
