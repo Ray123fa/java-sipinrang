@@ -193,10 +193,8 @@ public class UserModel {
             pstmt.setString(1, nim);
 
             if (pstmt.executeUpdate() == 1) {
-                JOptionPane.showMessageDialog(null, "Anggota berhasil dihapus!");
                 return true;
             } else {
-                JOptionPane.showMessageDialog(null, "Anggota gagal dihapus!");
                 return false;
             }
         } catch (SQLException e) {

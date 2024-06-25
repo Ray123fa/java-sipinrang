@@ -150,6 +150,7 @@ public class EditMemberPanel extends javax.swing.JPanel {
             }
         });
 
+        nimField.setEditable(false);
         nimField.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
         javax.swing.GroupLayout dataMembersPanelLayout = new javax.swing.GroupLayout(dataMembersPanel);

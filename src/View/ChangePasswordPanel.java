@@ -57,7 +57,7 @@ public class ChangePasswordPanel extends javax.swing.JPanel {
         dataMembersPanel.setBackground(new java.awt.Color(255, 252, 230));
 
         titlePanel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        titlePanel.setText("CHANGE PASSWORD");
+        titlePanel.setText("GANTI PASSWORD");
 
         nimLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         nimLabel.setText("NIM:");
@@ -96,120 +96,68 @@ public class ChangePasswordPanel extends javax.swing.JPanel {
         confirmPassLabel.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         confirmPassLabel.setText("Konfirmasi Password:");
 
-        javax.swing.GroupLayout dataMembersPanelLayout =
-                new javax.swing.GroupLayout(dataMembersPanel);
+        javax.swing.GroupLayout dataMembersPanelLayout = new javax.swing.GroupLayout(dataMembersPanel);
         dataMembersPanel.setLayout(dataMembersPanelLayout);
-        dataMembersPanelLayout.setHorizontalGroup(dataMembersPanelLayout
-                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(dataMembersPanelLayout.createSequentialGroup().addContainerGap()
-                        .addGroup(dataMembersPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(dataMembersPanelLayout.createSequentialGroup()
-                                        .addGroup(dataMembersPanelLayout
-                                                .createParallelGroup(
-                                                        javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jSeparator1).addComponent(titlePanel,
-                                                        javax.swing.GroupLayout.Alignment.LEADING,
-                                                        javax.swing.GroupLayout.DEFAULT_SIZE, 736,
-                                                        Short.MAX_VALUE))
-                                        .addGap(12, 12, 12))
-                                .addGroup(dataMembersPanelLayout.createSequentialGroup()
-                                        .addGroup(dataMembersPanelLayout
-                                                .createParallelGroup(
-                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(newPassLabel,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 150,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(oldPassLabel,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 150,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(nimLabel,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 150,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(
-                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addGroup(dataMembersPanelLayout
-                                                .createParallelGroup(
-                                                        javax.swing.GroupLayout.Alignment.TRAILING,
-                                                        false)
-                                                .addComponent(oldPassField,
-                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(nimField,
-                                                        javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(newPassField,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 250,
-                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(dataMembersPanelLayout
-                                                        .createSequentialGroup()
-                                                        .addComponent(btnReset,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                94,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(
-                                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(btnSimpan,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE,
-                                                                94,
-                                                                javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE,
-                                                Short.MAX_VALUE))
-                                .addGroup(dataMembersPanelLayout.createSequentialGroup()
-                                        .addComponent(confirmPassLabel,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE, 150,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(
-                                                javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(confirmPassField,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE, 250,
-                                                javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE)))));
-        dataMembersPanelLayout.setVerticalGroup(dataMembersPanelLayout
-                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataMembersPanelLayout
-                        .createSequentialGroup().addContainerGap()
-                        .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 33,
-                                javax.swing.GroupLayout.PREFERRED_SIZE)
+        dataMembersPanelLayout.setHorizontalGroup(
+            dataMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dataMembersPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(dataMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(dataMembersPanelLayout.createSequentialGroup()
+                        .addGroup(dataMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jSeparator1)
+                            .addComponent(titlePanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 736, Short.MAX_VALUE))
+                        .addGap(12, 12, 12))
+                    .addGroup(dataMembersPanelLayout.createSequentialGroup()
+                        .addGroup(dataMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newPassLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(oldPassLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(nimLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10,
-                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(dataMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(oldPassField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(nimField, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(newPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(dataMembersPanelLayout.createSequentialGroup()
+                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(dataMembersPanelLayout.createSequentialGroup()
+                        .addComponent(confirmPassLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(dataMembersPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                        false)
-                                .addComponent(nimLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 30,
-                                        Short.MAX_VALUE)
-                                .addComponent(nimField))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(dataMembersPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING,
-                                        false)
-                                .addComponent(oldPassLabel, javax.swing.GroupLayout.DEFAULT_SIZE,
-                                        30, Short.MAX_VALUE)
-                                .addComponent(oldPassField))
-                        .addGap(7, 7, 7)
-                        .addGroup(dataMembersPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(newPassLabel, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(newPassField, javax.swing.GroupLayout.PREFERRED_SIZE,
-                                        30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(dataMembersPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(confirmPassLabel,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(confirmPassField,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE, 30,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(dataMembersPanelLayout
-                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 33,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 33,
-                                        javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(330, 330, 330)));
+                        .addComponent(confirmPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        dataMembersPanelLayout.setVerticalGroup(
+            dataMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, dataMembersPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titlePanel, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dataMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(nimLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(nimField))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dataMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(oldPassLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(oldPassField))
+                .addGap(7, 7, 7)
+                .addGroup(dataMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(newPassLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(newPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(dataMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmPassLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(confirmPassField, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(dataMembersPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSimpan, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(330, 330, 330))
+        );
 
         mainPanel.add(dataMembersPanel, "card2");
 

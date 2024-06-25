@@ -53,7 +53,7 @@ public class MainFrame extends javax.swing.JFrame {
         setTitle("Sistem Informasi Keanggotaan Komnet");
         setSize(screenSize.width, screenSize.height - taskbarHeight);
         setLocationRelativeTo(null);
-//        setResizable(false);
+        setResizable(false);
 
         execute();
     }
@@ -101,7 +101,7 @@ public class MainFrame extends javax.swing.JFrame {
         userLabel.setToolTipText("Klik untuk membuka detail profile");
 
         profileIconLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        profileIconLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        profileIconLabel.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         javax.swing.GroupLayout profileWrapperLayout = new javax.swing.GroupLayout(profileWrapper);
         profileWrapper.setLayout(profileWrapperLayout);
@@ -300,7 +300,7 @@ public class MainFrame extends javax.swing.JFrame {
                 mainContent.revalidate();
             }
         });
-        MenuItem changePasswordItem = new MenuItem(null, true, lockIcon, "Change Password", new ActionListener() {
+        MenuItem changePasswordItem = new MenuItem(null, true, lockIcon, "Ganti Password", new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainContent.removeAll();
