@@ -9,18 +9,24 @@ import javax.swing.ImageIcon;
 import jiconfont.swing.IconFontSwing;
 import jiconfont.icons.font_awesome.FontAwesome;
 
+import Model.UserModel;
+
 /**
  *
  * @author Muhammad Rayhan Faridh
  */
 public class HomePanel extends javax.swing.JPanel {
 
+    private final UserModel model;
+
     /**
      * Creates new form HomePanel
      */
-    public HomePanel() {
+    public HomePanel(UserModel userModel) {
         initComponents();
         IconFontSwing.register(FontAwesome.getIconFont());
+
+        this.model = userModel;
 
         Icon bphIcon = IconFontSwing.buildIcon(FontAwesome.USER_SECRET, 58);
         ImageIcon devIcon = new ImageIcon(getClass().getResource("../images/user-gear-solid.png"));
@@ -33,6 +39,12 @@ public class HomePanel extends javax.swing.JPanel {
         cardIcon3.setIcon(eduIcon);
         cardIcon4.setIcon(hpdIcon);
         cardIcon5.setIcon(umumIcon);
+
+        cardCounter1.setText(String.valueOf(model.getMemberCount("BPH")) + " orang");
+        cardCounter2.setText(String.valueOf(model.getMemberCount("Pengembangan")) + " orang");
+        cardCounter3.setText(String.valueOf(model.getMemberCount("Pelatihan")) + " orang");
+        cardCounter4.setText(String.valueOf(model.getMemberCount("HPD")) + " orang");
+        cardCounter5.setText(String.valueOf(model.getMemberCount("Umum")) + " orang");
     }
 
     /**

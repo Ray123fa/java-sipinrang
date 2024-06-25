@@ -255,7 +255,7 @@ public class AddMemberPanel extends javax.swing.JPanel {
     private boolean btnSimpanActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnSimpanActionPerformed
         try {
             String nim = nimField.getText();
-            String fullname = fullnameField.getText();
+            String fullname = fullnameField.getText().toUpperCase();
             LocalDate birthday = birthdayDate.getDate().toInstant()
                     .atZone(java.time.ZoneId.systemDefault()).toLocalDate();
             int angkatan = (int) angkatanSpinner.getValue();
@@ -275,6 +275,13 @@ public class AddMemberPanel extends javax.swing.JPanel {
                 return false;
             }
 
+            if ((divisi.equals("BPH") && !role.equals("bph")) || (!divisi.equals("BPH") && role.equals("bph"))) {
+                JOptionPane.showMessageDialog(null,
+                        "Divisi tidak sesuai dengan role!",
+                        "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
             if (nim.isEmpty() || fullname.isEmpty() || birthday == null || divisi.isEmpty()
                     || status.isEmpty() || role.isEmpty()) {
                 JOptionPane.showMessageDialog(null, "Semua kolom harus diisi!", "Invalid Input",
@@ -283,6 +290,7 @@ public class AddMemberPanel extends javax.swing.JPanel {
             } else if (isAlphabetOnly(fullname) && isNimValid(nim)) {
                 UserController userController = new UserController();
                 userController.addUser(nim, fullname, birthday, angkatan, divisi, status, role);
+                btnReset.doClick();
                 return true;
             }
         } catch (NullPointerException e) {

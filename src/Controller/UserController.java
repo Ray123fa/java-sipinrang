@@ -43,11 +43,6 @@ public class UserController {
         userModel.changePassword(nim, oldPass, newPass);
     }
 
-    // Delete
-    public void deleteUser() {
-
-    }
-
     public UserModel getUser(String nim) {
         return userModel.getUser(nim);
     }

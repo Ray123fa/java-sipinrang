@@ -53,7 +53,7 @@ public class MainFrame extends javax.swing.JFrame {
         setTitle("Sistem Informasi Keanggotaan Komnet");
         setSize(screenSize.width, screenSize.height - taskbarHeight);
         setLocationRelativeTo(null);
-        setResizable(false);
+//        setResizable(false);
 
         execute();
     }
@@ -264,7 +264,7 @@ public class MainFrame extends javax.swing.JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 mainContent.removeAll();
-                mainContent.add(new HomePanel());
+                mainContent.add(new HomePanel(userModel));
                 mainContent.repaint();
                 mainContent.revalidate();
             }

@@ -5,7 +5,10 @@
 package View;
 
 import Model.UserModel;
+import java.awt.Font;
 import javax.swing.JOptionPane;
+import javax.swing.SwingConstants;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -91,6 +94,11 @@ public class TableMemberPanel extends javax.swing.JPanel {
         btnEkspor.setForeground(new java.awt.Color(255, 255, 255));
         btnEkspor.setText("EKSPOR");
         btnEkspor.setBorder(null);
+        btnEkspor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEksporActionPerformed(evt);
+            }
+        });
 
         membersTable.setBackground(new java.awt.Color(245, 245, 220));
         membersTable.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -168,8 +176,12 @@ public class TableMemberPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnEditActionPerformed
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
+        deleteSelectedRows();
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnEksporActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEksporActionPerformed
+        
+    }//GEN-LAST:event_btnEksporActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
@@ -195,6 +207,10 @@ public class TableMemberPanel extends javax.swing.JPanel {
     private void loadTableData(String activePanel) {
         DefaultTableModel dtm = (DefaultTableModel) membersTable.getModel();
         dtm.setRowCount(0);
+        membersTable.setRowHeight(30);
+        membersTable.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
+
+        setAlignTableCell("center", 0, 2, 3, 4, 5);
 
         for (UserModel user : user.getUsers(activePanel)) {
             dtm.addRow(new Object[]{
@@ -205,6 +221,27 @@ public class TableMemberPanel extends javax.swing.JPanel {
                 user.getDivisi(),
                 user.getStatus()
             });
+        }
+    }
+
+    private void setAlignTableCell(String align, Integer... col) {
+        DefaultTableCellRenderer renderer = new DefaultTableCellRenderer();
+
+        switch (align.toLowerCase()) {
+            case "center":
+                renderer.setHorizontalAlignment(SwingConstants.CENTER);
+                break;
+            case "right":
+                renderer.setHorizontalAlignment(SwingConstants.RIGHT);
+                break;
+            case "left":
+            default:
+                renderer.setHorizontalAlignment(SwingConstants.LEFT);
+                break;
+        }
+
+        for (Integer columnIndex : col) {
+            membersTable.getColumnModel().getColumn(columnIndex).setCellRenderer(renderer);
         }
     }
 
@@ -222,12 +259,30 @@ public class TableMemberPanel extends javax.swing.JPanel {
             mainPanel.repaint();
             mainPanel.revalidate();
         } else {
-            JOptionPane.showMessageDialog(null, "Anda belum memilih baris.\nPilih satu baris untuk mengedit!");
+            JOptionPane.showMessageDialog(null, "Anda harus memilih maksimal satu baris untuk mengedit!");
         }
     }
-    
+
     private void deleteSelectedRows() {
-        
+        int[] selectedRows = membersTable.getSelectedRows();
+        DefaultTableModel dtm = (DefaultTableModel) membersTable.getModel();
+
+        if (selectedRows.length > 0) {
+            int dialogResult = JOptionPane.showConfirmDialog(null, "Apakah Anda yakin ingin menghapus data ini?", "Peringatan", JOptionPane.YES_NO_OPTION);
+            if (dialogResult == JOptionPane.YES_OPTION) {
+                for (int i = selectedRows.length - 1; i >= 0; i--) {
+                    String nim = dtm.getValueAt(selectedRows[i], 0).toString();
+                    boolean isSuccess = user.deleteMember(nim);
+                    if (isSuccess) {
+                        dtm.removeRow(selectedRows[i]);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Gagal menghapus data!");
+                    }
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Anda belum memilih baris.\nPilih satu atau lebih baris untuk menghapus!");
+        }
     }
 
     private void execute() {

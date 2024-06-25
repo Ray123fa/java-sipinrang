@@ -4,7 +4,6 @@
  */
 package Model;
 
-import View.AddMemberPanel;
 import View.LoginFrame;
 import com.lambdaworks.crypto.SCryptUtil;
 import java.sql.Connection;
@@ -32,11 +31,11 @@ public class UserModel {
     private String status;
     private String role;
 
-    public String hashPassword(String password) {
+    private String hashPassword(String password) {
         return SCryptUtil.scrypt(password, 16, 16, 16);
     }
 
-    public boolean checkPassword(String candidate, String hashed) {
+    private boolean checkPassword(String candidate, String hashed) {
         return SCryptUtil.check(candidate, hashed);
     }
 
@@ -79,8 +78,7 @@ public class UserModel {
             }
 
             if (pstmt.executeUpdate() == 1) {
-                JOptionPane.showMessageDialog(null,
-                        "Anggota berhasil ditambahkan!");
+                JOptionPane.showMessageDialog(null, "Anggota berhasil ditambahkan!");
                 return true;
             } else {
                 JOptionPane.showMessageDialog(null, "Anggota gagal ditambahkan!");
@@ -183,6 +181,26 @@ public class UserModel {
             return false;
         } catch (IllegalArgumentException e) {
             JOptionPane.showMessageDialog(null, "Password lama salah!");
+            return false;
+        }
+    }
+
+    public boolean deleteMember(String nim) {
+        Database db = Database.getInstance();
+        String query = "DELETE FROM users WHERE nim = ?";
+
+        try (Connection conn = db.getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, nim);
+
+            if (pstmt.executeUpdate() == 1) {
+                JOptionPane.showMessageDialog(null, "Anggota berhasil dihapus!");
+                return true;
+            } else {
+                JOptionPane.showMessageDialog(null, "Anggota gagal dihapus!");
+                return false;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Anggota gagal dihapus!");
             return false;
         }
     }
@@ -304,6 +322,37 @@ public class UserModel {
         }
 
         return user;
+    }
+
+    public Integer getMemberCount(String divisi) {
+        Database db = Database.getInstance();
+        String query = "SELECT COUNT(*) AS count FROM users WHERE divisi LIKE ?";
+
+        try (Connection conn = db.getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            pstmt.setString(1, divisi);
+
+            ResultSet rs = pstmt.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("count");
+            }
+        } catch (SQLException e) {
+        }
+
+        return 0;
+    }
+
+    public void exportToCsv(String path) {
+        Database db = Database.getInstance();
+        String query = "SELECT * FROM users ORDER BY divisi, fullname ASC";
+
+        try (Connection conn = db.getConnection(); PreparedStatement pstmt = conn.prepareStatement(query)) {
+            ResultSet rs = pstmt.executeQuery();
+
+            CsvModel csv = new CsvModel();
+            csv.writeToCsv(rs, path);
+        } catch (SQLException e) {
+        }
     }
 
     /**

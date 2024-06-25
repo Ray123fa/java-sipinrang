@@ -25,7 +25,7 @@ public class EditMemberPanel extends javax.swing.JPanel {
     public EditMemberPanel(UserModel selectedUser, UserModel activeUser) {
         initComponents();
         this.member = selectedUser;
-        
+
         if (!activeUser.getDivisi().equals("BPH") || activeUser.getRole().equals("koor")) {
             divisiDropdown.removeAllItems();
             divisiDropdown.addItem(selectedUser.getDivisi());
@@ -34,7 +34,7 @@ public class EditMemberPanel extends javax.swing.JPanel {
             roleDropdown.removeAllItems();
             roleDropdown.addItem("member");
         }
-        
+
         setFormValue(selectedUser);
     }
 
@@ -273,6 +273,13 @@ public class EditMemberPanel extends javax.swing.JPanel {
             } else if (!isNimValid(nim)) {
                 JOptionPane.showMessageDialog(null,
                         "NIM harus diawali dengan 11, 21, atau 22 dan diikuti 7 digit angka lainnya!",
+                        "Invalid Input", JOptionPane.ERROR_MESSAGE);
+                return false;
+            }
+
+            if ((divisi.equals("BPH") && !role.equals("bph")) || (!divisi.equals("BPH") && role.equals("bph"))) {
+                JOptionPane.showMessageDialog(null,
+                        "Divisi tidak sesuai dengan role!",
                         "Invalid Input", JOptionPane.ERROR_MESSAGE);
                 return false;
             }
